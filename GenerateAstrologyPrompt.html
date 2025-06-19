@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Astrology Report Generator</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial;
+            background-color: #fdf6e3;
+            color: #222;
+            padding: 2rem;
+            max-width: 600px;
+            margin: auto;
+        }
+        label, input, select, textarea {
+            display: block;
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+        input, select, textarea {
+            padding: 0.5rem;
+            font-size: 1rem;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Generate Astrology Report</h1>
+    <form id="astroForm">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" required>
+
+        <label for="dob">Date of Birth</label>
+        <input type="text" id="dob" placeholder="DD Month YYYY" required>
+
+        <label for="tob">Time of Birth</label>
+        <input type="text" id="tob" placeholder="e.g., 1:00 PM or between 1:00 PM and 1:30 PM">
+
+        <label for="place">Place of Birth</label>
+        <input type="text" id="place" required>
+
+        <label for="lang">Preferred Language</label>
+        <select id="lang">
+            <option value="English" selected>English</option>
+            <option value="Hindi">Hindi</option>
+            <option value="Punjabi">Punjabi</option>
+        </select>
+
+        <button type="submit">Generate Prompt</button>
+    </form>
+
+    <h2>Copy This Prompt</h2>
+    <textarea id="output" rows="10" readonly></textarea>
+
+    <script>
+        const form = document.getElementById("astroForm");
+        const output = document.getElementById("output");
+
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById("name").value;
+            const dob = document.getElementById("dob").value;
+            const tob = document.getElementById("tob").value || "Unknown";
+            const place = document.getElementById("place").value;
+            const lang = document.getElementById("lang").value;
+
+            const prompt = `Generate a detailed astrology report in ${lang} based on the following data:\n` +
+                `Name: ${name}\n` +
+                `Date of Birth: ${dob}\n` +
+                `Time of Birth: ${tob}\n` +
+                `Place of Birth: ${place}\n` +
+                `The report should include daily guidance, lucky number, lucky color, good and bad periods, and life predictions.` +
+                ` Make it beautiful and ready to paste to a client. Use the footer: Prepared by Astrologer Rishi.`;
+
+            output.value = prompt;
+        });
+    </script>
+
+</body>
+</html>
